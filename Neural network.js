@@ -23,7 +23,7 @@ function net(Inum){
         }
         return Outputs
     }
-
+    //should be the only part left to do
     this.train=function(Time){
         End=new Date().getTime()+Time*60
         Trainer=setInterval(function(){
@@ -87,20 +87,25 @@ function scaleDown(Canvas,Area){
     return grayScale(Canvas.getContext("2d"),Canvas)
 }
 
-/*function record(){
+function record(Canvas){
+    SclH=Canvas.height/400
+    SclW=Canvas.width/1100
+    Canvas.getContext("2d").scale(SclW,SclH)
+    Canvas.height=400
+    Canvas.width=1100
     console.log("Recording")
     var keys = [];
     window.onkeyup = function(e) {keys[e.keyCode]=false;}
     window.onkeydown = function(e) {keys[e.keyCode]=true;}
     out=[]
     Recorder=setInterval(function(){
-        out.push("out["+out.length+"]=["+mc.toDataURL("image/webp", 0.01)+","+keys[37]+","+keys[39]+","+keys[32] || keys[38]+"]");
+        out.push("TrainingSet.push("++Canvas.toDataURL("image/webp", 0.01)+","+keys[37]+","+keys[39]+","+keys[32] || keys[38]+")");
         if(keys[80]==true){
             console.log(out.join(";"))
             clearInterval(Recorder);
         }
     },1500)
-}record()*/
+}record(mc)
 
 function grayScale(context, canvas) {
     var imgData = context.getImageData(0, 0, canvas.width, canvas.height);
